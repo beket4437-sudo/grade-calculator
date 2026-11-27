@@ -1,4 +1,3 @@
-C++
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -6,50 +5,50 @@ C++
 using namespace std;
 
 int main() {
-    string input;
-    int studentCount = 0;
-    double totalClassScore = 0.0;
+    string userInputStudentName;
+    int totalStudentCount = 0;
+    double cumulativeClassScoreSum = 0.0;
 
     cout << "Enter student name or type 'end' to finish: ";
-    while (cin >> input && input != "end") {
-        string studentName = input;
-        double sum = 0;
-        int validScores = 0;
+    while (cin >> userInputStudentName && userInputStudentName != "end") {
+        string currentStudentName = userInputStudentName;
+        double currentStudentScoreSum = 0;
+        int validatedScoresCount = 0;
 
-        cout << "Enter 5 scores for " << studentName << " (0-100):\n";
-        while (validScores < 5) {
-            double score;
-            cin >> score;
-            if (score < 0 || score > 100) {
+        cout << "Enter 5 scores for " << currentStudentName << " (0-100):\n";
+        while (validatedScoresCount < 5) {
+            double enteredTestScore;
+            cin >> enteredTestScore;
+            if (enteredTestScore < 0 || enteredTestScore > 100) {
                 cout << "Invalid score. Please enter a value between 0 and 100: ";
             } else {
-                sum += score;
-                validScores++;
+                currentStudentScoreSum += enteredTestScore;
+                validatedScoresCount++;
             }
         }
 
-        double average = sum / 5.0;
-        totalClassScore += average;
-        studentCount++;
+        double calculatedStudentAverage = currentStudentScoreSum / 5.0;
+        cumulativeClassScoreSum += calculatedStudentAverage;
+        totalStudentCount++;
 
-        char grade;
-        if (average >= 90) grade = 'A';
-        else if (average >= 75) grade = 'B';
-        else if (average >= 60) grade = 'C';
-        else grade = 'F';
+        char assignedLetterGrade;
+        if (calculatedStudentAverage >= 90) assignedLetterGrade = 'A';
+        else if (calculatedStudentAverage >= 75) assignedLetterGrade = 'B';
+        else if (calculatedStudentAverage >= 60) assignedLetterGrade = 'C';
+        else assignedLetterGrade = 'F';
 
         cout << fixed << setprecision(1);
-        cout << "Student: " << studentName << " | Average: " << average << " | Grade: " << grade << "\n\n";
+        cout << "Student: " << currentStudentName << " | Average: " << calculatedStudentAverage << " | Grade: " << assignedLetterGrade << "\n\n";
 
         cout << "Enter next student name or type 'end' to finish: ";
     }
 
-    if (studentCount == 0) {
+    if (totalStudentCount == 0) {
         cout << "No students entered." << endl;
     } else {
         cout << fixed << setprecision(1);
-        cout << "\nTotal students: " << studentCount << endl;
-        cout << "Class average: " << totalClassScore / studentCount << endl;
+        cout << "\nTotal students: " << totalStudentCount << endl;
+        cout << "Class average: " << cumulativeClassScoreSum / totalStudentCount << endl;
     }
 
     return 0;
